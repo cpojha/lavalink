@@ -1,105 +1,80 @@
-# Lavalink
-Standalone audio sending node based on Lavaplayer and JDA-Audio.
-Allows for sending audio without it ever reaching any of your shards.
+# Filo 
+A cute, multipurpose Discord bot for all your kawaii needs.
 
-Being used in production by FredBoat, Dyno, Rythm, LewdBot, and more.
+### Invite Filo to your Guild
+[Click here](https://discordapp.com/oauth2/authorize?client_id=475708736908820482&permissions=268725328&scope=bot) to invite Filo to your guild!
 
-[![JDA guild](https://discordapp.com/api/guilds/125227483518861312/embed.png?style=banner2)](https://discord.gg/jtAWrzU)
+### Contributions
+Filo is an amazing bot, but just like all things in life, she can be improved! 
 
-## Features
-* Powered by Lavaplayer
-* Minimal CPU/memory footprint
-* Twitch/YouTube stream support
-* Event system
-* Seeking
-* Volume control
-* REST API for resolving lavaplayer tracks (used for non-JVM clients)
-* Statistics (good for load balancing)
-* Basic authentication
-* Prometheus metrics
-* Docker images
+As long as they follow [Linter](https://en.wikipedia.org/wiki/Lint_(software)) rules, pull requests that add new features, fix insanely bad written code, or make things look fancier are very appreciated and I'm more than welcome to help you merge your pull request into Filo.
 
-## Requirements
+If you have questions about Filo or encounter any issues with her, you can join [Filo's Discord Server](https://discord.gg/jmt2fTp) for support.  
 
-* Java 11 LTS or greater required.
-* OpenJDK or Zulu running on Linux AMD64 is officially supported.
+## Supported Commands
+Filo's commands are separated by 4 categories, which are __General Commands, Information Commands, User Command, and Music Commands.__ 
+In order to use these commands, you must first type Filo's prefix, which by default is `!`. This can be changed to anything else by the user if nessesary.  
 
-Support for Darwin (Mac), Windows AMD64, and Linux ARM (Raspberry Pi) is provided on a best-effort basis. This is dependent on Lavaplayer's native libraries.
+### General Commands
+- `help/help [Command]`: Display a messages with all the available commands. It can also provide help by displaying options for a certain command.
+- `info`: Provides useful information to the user about Klasa. 
+- `ping`: Runs a connection test on Discord. 
+- `stats`: Provides information about the server and/or the bot.
 
-Support for other JVMs is also best-effort. Periodic CPU utilization stats are prone to not work everywhere.
+### Information Commands
+- `avatar`: Obtains your profile picture and posts it on whichever chat the user is in. 
+- `anime [Anime name]` : Provides usful information about recent anime release. It can also provide information about a specified anime. (Powered by [AniList](https://anilist.co)) 
+- `fact`: Shows the user a random fact about anything. (Powered by [nekos.life](https://nekos.life))
+- `chucknorris`: Shows the user a random fact about Chuck Norris (Powered by [api.chucknorris.io](https://api.chucknorris.io))
+- `google`: Provides useful information on how easy it is to ufse Google (Powered by [lmgtfy](https://lmgtfy.com))
+- `donald`: Provides intellectual quotes from the POTUS. (Powered by [tronalddump.io](https://www.tronalddump.io))
+- `define [word]`: Provides useful information about the specified word (Powered by [Urban Dictionary](https://www.urbandictionary.com))
 
-## Changelog
+### User Commands
+- `hug [user]`: Allows users to vitually hug the specified user.
+- `kiss [user]`: Allows users to virtually kiss the specified ulser. 
+- `pat [user]`: Allows users to vitually pat the specified user. 
+- `cuddle [user]`: Allows users to virtually cuddle the specified user. 
+- `slap [user]`: Allows users to virtually slap the specfied user. 
+- `owify [text]`: Provides the user with an specified text having "owo's" throughout phrases.
+- `8ball`: Provides the user answers for yes/no questions. 
 
-Please see [here](CHANGELOG.md)
+### Music Commands
+- `loop`: Turn on/off the loop of the currently playing track.
+- `nowplaying`: Show information about the currently playing track.
+- `pause`: Pause / resume the song playback.
+- `play`: Play a song from youtube.
+- `queue`: Show the current queue of the current session.
+- `resume`: Resume the song playback.
+- `skip`: Skip the currently playing track.
+- `stop`: Stop the current session and flush the queue.
+- `volume`: Adjust the playback volume. (Limit: 1% - 200%)
 
-## Versioning policy
+## Implementation
+Implementing Filo into your Discord server is easy to do. Before you start, here are things you will need: 
 
-The public api ("api" in a very broad sense) of Lavalink can be categorized into two main domains:
-- **Client Domain:** The api exposed to clients, consisting of both the websocket protocol, and any public http endpoints
-- **Server Domain:** The server application with its runtime environment, its configuration, etc.
+- node.js
+  - discord.js
+  - klasa
+  - node.fetch
+- git (Optional) 
+- A Discord account (of course!)
 
-Changes that might be breaking to one domain need not be breaking to the other.
-Examples: 
-- Removing an endpoint. This is a breaking change for the client domain, but is
-not a breaking change for running the server itself.
-- Upgrading the minimum Java version: This is a breaking change for the server domain,
-but client implementations couldn't care less about it. 
+discord.js, klasa, and node.fetch can easily be downloaded and installed by running `npm i` on the root of the project. 
 
-Given the above, the following versioning pattern lends itself well to the Lavalink project:
+### Installation
+1. Download the master branch of Filo from [here](https://github.com/Emy/filo/archive/master.zip), or use Git in order to clone this repository
+```
+git clone https://github.com/Emy/filo.git
+```
+2. Create a new application at [Discord Developers](https://discordapp.com/developers/)
+3. Create a bot inside said application and copy your bot token
+4. Add your given bot token to the `config.json` file in the "discordToken" field and your Discord tag on the "ownerID" field
+5. Run `node index.js` in the root of the project to start Filo
 
-_**api.major.minor.patch**_
+### Adding the bot to your Discord Server
+Now that you have set up Filo, you can add her to your Discord server in 2 steps
 
-- **Api**: Bumped when breaking changes are comitted to the client domain of Lavalink  
-Examples: Removing an endpoint, altering output of an endpoint in a non backwards compatible manner  
-- **Major**: Bumped when breaking changes are comitted to the Lavalink server domain  
-Examples: Bumping the required Java version, altering the configuration in a non backwards compatible manner
-- **Minor**: New features in any domain
-Examples: New optional endpoint or op code, additional configuration options, change of large subsystems or dependencies
-- **Patch**: Bug fixes in any domain
-Examples: Fixing a race condition, fixing unexpected exceptions, fixing output that is not according to specs, etc.
-
-While major, minor and patch will do a best effort to adhere to [Semantic Versioning](https://semver.org/),
-prepending it with an additional api version makes life easier for developers of client implementations
-in two ways: It is a clear way for the Lavalink project to communicate the actually relevant breaking changes 
-to client developers, and in turn, client developers can use the api version to clearly communicate to their
-users about the compatibility of their clients to the Lavalink server.
-
-
-## Client libraries:
-### Supports 3.x and older:
-* [Lavalink-Client](https://github.com/FredBoat/Lavalink-Client) (JDA or generic, Java)
-* [LavaClient](https://github.com/SamOphis/LavaClient) (Java)
-* [Lavalink.py](https://github.com/Devoxin/Lavalink.py) (discord.py, Python)
-* [pylava](https://github.com/Pandentia/pylava) (discord.py, Python)
-* [SandySounds](https://github.com/MrJohnCoder/SandySounds) (JavaScript)
-* [eris-lavalink](https://github.com/briantanner/eris-lavalink) ([eris](https://github.com/abalabahaha/eris), JavaScript)
-* [Shoukaku](https://github.com/Deivu/Shoukaku) ([discord.js](https://github.com/discordjs/discord.js), JavaScript)
-* [discord.js-lavalink](https://github.com/MrJacz/discord.js-lavalink/) ([discord.js](https://github.com/discordjs/discord.js), JavaScript)
-* [SharpLink](https://github.com/Devoxin/SharpLink) ([Discord.Net](https://github.com/RogueException/Discord.Net), .NET)
-* [Victoria](https://github.com/Yucked/Victoria) ([Discord.NET](https://github.com/RogueException/Discord.Net), .NET)
-* [Lavalink.NET](https://github.com/Dev-Yukine/Lavalink.NET) (.NET)
-* [DSharpPlus.Lavalink](https://github.com/DSharpPlus/DSharpPlus/tree/master/DSharpPlus.Lavalink) ([DSharpPlus](https://github.com/DSharpPlus/DSharpPlus/), .NET)
-* [Lavalink4NET](https://github.com/angelobreuer/Lavalink4NET) ([Discord.Net](https://github.com/RogueException/Discord.Net), [DSharpPlus](https://github.com/DSharpPlus/DSharpPlus/), .NET)
-* [gavalink](https://github.com/foxbot/gavalink) (Go)
-* [Magma](https://github.com/initzx/magma/) (discord.py, Python)
-* [lavapotion](https://github.com/SamOphis/lavapotion) (Elixir)
-* [WaveLink](https://github.com/EvieePy/Wavelink)(discord.py, Python)
-* Or [create your own](https://github.com/Frederikam/Lavalink/blob/master/IMPLEMENTATION.md)
-
-### Supports 2.x:
-* [eris-lavalink](https://github.com/briantanner/eris-lavalink) (Eris, JavaScript)
-* Or [create your own](https://github.com/Frederikam/Lavalink/blob/master/IMPLEMENTATION.md)
-
-## Server configuration
-Download binaries from [the CI server](https://ci.fredboat.com/viewLog.html?buildId=lastSuccessful&buildTypeId=Lavalink_Build&tab=artifacts&guest=1) or [the GitHub releases](https://github.com/Frederikam/Lavalink/releases).
-
-Put an `application.yml` file in your working directory. [Example](https://github.com/Frederikam/Lavalink/blob/master/LavalinkServer/application.yml.example)
-
-Run with `java -jar Lavalink.jar`
-
-Docker images are available on the [Docker hub](https://hub.docker.com/r/fredboat/lavalink/).
-
-[![Docker Pulls](https://img.shields.io/docker/pulls/fredboat/lavalink.svg)](https://hub.docker.com/r/fredboat/lavalink/) [![Docker layers](https://images.microbadger.com/badges/image/fredboat/lavalink:dev.svg)](https://microbadger.com/images/fredboat/lavalink:dev "Get your own image badge on microbadger.com")
-
-# Acknowledgements
-This project contains modified code from https://github.com/sedmelluq/jda-nas v1.0.5
+1. Find the client ID of your app from [Discord Developers](https://discordapp.com/developers/)
+2. Open the following URL in your browser, and replace CLIENTID with your client ID:\
+`https://discordapp.com/oauth2/authorize?client_id=CLIENTID&scope=bot&permissions=0`
