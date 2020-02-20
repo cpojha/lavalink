@@ -1,0 +1,30 @@
+{
+  "name": "filo",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "start": "node index.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "Emy",
+  "license": "ISC",
+  "dependencies": {
+    "@sentry/node": "5.6.2",
+    "discord.js": "github:discordjs/discord.js",
+    "discord.js-lavalink": "MrJacz/discord.js-lavalink",
+    "dotenv": "^8.1.0",
+    "file-type": "^12.3.1",
+    "graphql": "^0.13.2",
+    "klasa": "github:dirigeants/klasa",
+    "klasa-dashboard-hooks": "dirigeants/klasa-dashboard-hooks",
+    "node-fetch": "^2.2.0",
+    "sagiri": "^3.0.1",
+    "saucenao": "^0.0.2"
+  },
+  "devDependencies": {
+    "eslint": "^6.0.1",
+    "eslint-config-google": "^0.13.0"
+  }
+}
